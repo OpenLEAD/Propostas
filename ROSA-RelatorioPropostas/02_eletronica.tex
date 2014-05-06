@@ -98,6 +98,45 @@ O gateway Ethernet SR01E12 possui interfaces UART e analógicas. Dessa forma, di
 A placa com microcontrolador é uma solução de baixo custo, porém exige maior tempo de execução. Há a necessidade de fabricação, montagem, testes elétricos e lógicos da placa e programação de microcontrolador para gerenciamento de cada interface, como o protocolo CANOpen. 
 A eletrônica deverá ser acoplada ao Lifting Beam, logo deverá ser construída uma estrutura mecânica à prova d’água para esta solução.
 
+\subsection{Arquitetura de Software Proposta 1}
+O sistema se divide em três grandes blocos que serão encapsulados separadamente
+e se comunicarão entre si. A primeira parte consiste no sistema de eletrônica
+embarcada composta pelos sensores e um equipamento de roteamento dos dados, a
+segunda parte consiste no sistema de gerenciamento e processamento de dados em
+terra e, finalmente, o último bloco consiste na camada de interface
+homem-máquina , que consiste em um Tablet com sistema operacional Android.
+
+Cada sensor deverá possuir um driver para a interface entre o equipamento físico
+e camada de software, isto é, os encoders, inclinômetro, os sensores indutivos e
+o sensor de pressão possuirão drivers dedicados para a leitura de dados, feita
+através de uma conexão Ethernet para a placa que interconecta os sensores. O
+sonar e o módulo PanTilt também possuirão drivers próprios para a aquisição de
+dados e controle.
+
+Nesta proposta, após a aquisição de dados, a placa embarcada realizará o
+roteamento e envio de todos os dados para o computador em terra por meio do
+driver do módulo Ethernet.  Os dados transmitidos pela eletrônica embarcada são
+separados em dois grandes grupos: referentes à Monitoração e os referentes à
+Visualização Sonar.
+
+No computador localizado em terra, o componente de software responsável pela
+monitoração irá processar e conformar os dados provenientes dos sensores
+utilizados para o monitoramento das operações de inserção e remoção (encoders,
+inclinômetro, sensores indutivos e sensor de pressão). Os dados provenientes do
+sonar devem ser integrados com a posição do elemento PanTilt, no componente
+Sonar-PanTilt, para que sejam consistentes e completos.  O módulo de
+Reconstrução 3D é responsável, então, por traduzir os dados processados pelo
+componente anterior em uma visualização inteligível para o ser humano.  Um
+componente de segurança também é adicionado para monitorar a correta utilização
+do sonar (apenas embaixo d’água), conferindo uma maior robustez ao sistema.
+
+Ambos os componentes de processamento e conformação de dados, Monitoração e
+Visualização Sonar, irão se comunicar com o Tablet com sistema operacional
+Android por meio do componente Transmissão de dados – Tablet, enviando os dados
+processados e recebendo os comandos de controle.  A interface homem máquina
+consiste em um aplicativo cuja finalidade é realizar a interface do sistema com
+o usuário, possibilitando uma correta e fácil visualização de todas as
+informações pertinentes do sistema e suas operações.
 
 \subsection{Arquitetura de Software Proposta 1}
 O sistema se divide em três grandes blocos que serão encapsulados separadamente e se comunicarão entre si. A primeira parte consiste no sistema de eletrônica embarcada composta pelos sensores e um equipamento de roteamento dos dados, a segunda parte consiste no sistema de gerenciamento e processamento de dados em terra e, finalmente, o último bloco consiste na camada de interface homem-máquina , que consiste em um Tablet com sistema operacional Android.
@@ -123,6 +162,43 @@ placa com microcontrolador. Além disso, o tempo de execução gasto para progra
 \end{figure} 
  
 Assim como a solução 1, deverá ser construída uma estrutura mecânica à prova d’água.
+
+subsection{Arquitetura de Software Proposta 2}
+
+Para esta proposta o processamento dos dados aquisitados pelos sensores será
+processado na própria eletrônica embarcada e, em seguida,
+ serão enviados para o tablet, podendo ser roteado por um computador em terra ou
+ diretamente por um roteador.
+ 
+Cada sensor deverá possuir, novamente, um driver para a interface entre o
+equipamento físico e camada de software,
+ isto é, os encoders, inclinômetro, os sensores indutivos e o sensor de pressão
+ possuirão drivers dedicados para a leitura de dados,
+feita através de uma conexão Ethernet para a placa que interconecta os sensores.
+O sonar e o módulo PanTilt também possuirão drivers próprios para a aquisição de
+dados e controle.
+
+Todos os componentes principais estão localizados no computador embarcado.
+O componente de software responsável pela monitoração irá processar e conformar
+os dados provenientes dos sensores utilizados para o monitoramento das operações
+de inserção e remoção (encoders, inclinômetro, sensores indutivos
+ e sensor de pressão). Os dados provenientes do sonar devem ser integrados com a
+ posição do elemento PanTilt,
+  no componente Sonar-PanTilt, para que sejam consistentes e completos.  O
+  módulo de Reconstrução 3D é responsável,
+   então, por traduzir os dados processados pelo componente anterior em uma
+   visualização inteligível para o ser humano.
+Um componente de segurança também é adicionado para monitorar a correta
+utilização do sonar (apenas embaixo d’água), conferindo uma maior robustez ao
+sistema.
+
+Após o processamento dos dados, será estabelecida uma conexão wi-fi com o tablet
+por meio de um computador em terra ou
+ apenas por meio de um roteador.
+ 
+Os componentes da interface homem máquina permanecem inalterados em relação à
+proposta anterior.
+
 
 \subsection{Arquitetura de Software Proposta 2}
 
