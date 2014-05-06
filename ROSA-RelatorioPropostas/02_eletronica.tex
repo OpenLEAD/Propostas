@@ -27,11 +27,26 @@
 
 Foram desenvolvidas três soluções para a arquitetura da eletrônica, que podem ser classificadas quanto à simplicidade, custo e rapidez de execução.
 
-A primeira solução consiste em projetar uma placa que pudesse realizar o controle da alimentação dos dispositivos da eletrônica, monitoramento elétrico de corrente e voltagem, e gerenciar os dispositivos, com todas as interfaces de comunicação do sistema. Os componentes da eletrônica necessários para a proposta são de baixo custo, porém há complexidade de software e eletrônica em relação às outras soluções, o que impacta em uma maior demora da solução.     
+A primeira solução consiste em projetar uma placa que pudesse realizar o
+controle da alimentação dos dispositivos da eletrônica, monitoramento elétrico
+de corrente e voltagem, e gerenciar os dispositivos, com todas as interfaces de
+comunicação do sistema. O processamento do sonar será realizado por um PC na
+base. Os componentes da eletrônica necessários para a proposta são de baixo
+custo, porém há complexidade de software e eletrônica em relação às outras soluções, o que impacta em uma maior demora da solução.
 
-A segunda proposta incide na utilização de um PC104 embarcado com todas as interfaces necessárias para o gerenciamento dos dispositivos. Do ponto de vista da eletrônica, a solução tem custo intermediário, é simples e baixo tempo de execução. O software tem menor complexidade, pois muitos dos drivers de dispositivos já foram desenvolvidos na plataforma ROCK. 
+A segunda proposta incide na utilização de um PC embarcado para o processamento
+de sinal e gerenciamento de todas as interfaces necessárias para o
+gerenciamento dos dispositivos. O PC embarcado se comunica com a base por
+Ethernet, onde haverá um roteador para estabelecer a comunicação com o Tablet.
+Esta solução necessita de um PC104 embarcado, com proteção mecânica desenvolvida
+pela equipe, ou uma eletrônica importada protegida. Do ponto de
+vista da eletrônica, a solução tem com PC104 apresenta custo intermediário, é
+simples e de baixo tempo de execução, porém há a complexidade mecânica. Por
+outro lado, a eletrônica importada é de alto custo, mas aproxima-se mais de um
+produto final. 
 
-A terceira proposta é a utilização de uma eletrônica embarcada adquirida na Alemanha com todas as interfaces e alimentações elétricas necessárias para o sistema. O custo desta solução é alto, porém apresenta grande simplicidade e rápido tempo de execução.
+A terceira proposta é a utilização de dois PCs, de forma que haja
+processamento tanto na eletrônica embarcada, quanto na base. O custo desta solução é alto, porém apresenta grande simplicidade e rápido tempo de execução.
 
 \section{Proposta 1 – Placa com Microcontrolador e Gateway Ethernet}
 
@@ -84,7 +99,7 @@ A placa com microcontrolador é uma solução de baixo custo, porém exige maior
 A eletrônica deverá ser acoplada ao Lifting Beam, logo deverá ser construída uma estrutura mecânica à prova d’água para esta solução.
 
 
-\section{Proposta 2 – PC104 Embarcado}
+\section{Proposta 2 – PC Embarcado e base com Roteador}
 
 A solução com um PC embarcado, acoplado à estrutura do Lifting Beam, é
 considerada uma solução intermediária em relação ao custo e é uma solução que
@@ -101,7 +116,7 @@ placa com microcontrolador. Além disso, o tempo de execução gasto para progra
  
 Assim como a solução 1, deverá ser construída uma estrutura mecânica à prova d’água.
 
-\section{Proposta 3 – Eletrônica embarcada com Pelican Case}
+\section{Proposta 3 – PC embarcado e PC na base}
 
 A terceira solução consiste na compra de uma eletrônica embarcada e um computador em Pelican Case. Esta solução, apesar de ser a mais custosa, é mais robusta devido ao grau de proteção elétrica e mecânica, além de já estar em conformidade quanto aos requisitos de projeto.
 
@@ -126,4 +141,5 @@ Em andamento:
   \item Aplicativo para interface do sistema com usuário.
   \item Compra de PC104 e acessórios para a solução 2.
   \item Revisão da placa.
+  \item Set-up para teste de bancada com sonar.
 \end{itemize}
