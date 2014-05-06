@@ -1,0 +1,54 @@
+%%******************************************************************************
+%%
+%% introduction.tex
+%%
+%%******************************************************************************
+%%
+%% Title......: Introduction
+%%
+%% Author.....: GSCAR-DFKI
+%%
+%% Started....: Nov 2013
+%%
+%% Emails.....: alcantara@poli.ufrj.br elael@poli.ufrj renan028@gmail.com
+%%
+%% Address....: Universidade Federal do Rio de Janeiro
+%%              Caixa Postal 68.504, CEP: 21.945-970
+%%              Rio de Janeiro, RJ - Brasil.
+%%
+%%******************************************************************************
+
+
+%%******************************************************************************
+%% SECTION - Eletronica
+%%******************************************************************************
+
+\section{Proposta 3 – PC embarcado e PC na base}
+
+A terceira solução consiste na compra de uma eletrônica embarcada e um
+computador em Pelican Case. Esta solução, apesar de ser a mais custosa, é mais
+robusta devido ao grau de proteção elétrica e mecânica, além de já estar em
+conformidade quanto aos requisitos de projeto.
+
+\subsubsection{Arquitetura de Software Proposta 3}
+Esta proposta é um meio termo entre a proposta com todo o processamento em terra
+(proposta 1) e a proposta anterior, na qual todo o processamento de dados se dá
+na eletrônica embarcada. Os componentes de software são basicamente os mesmos,
+excetuando-se a ordem em que o processamento e a comunicação ocorrem.
+
+Os dados dos sensores das operações de inserção e remoção de Stoplogs
+(encoders, inclinômetro, sensores indutivos e sensor de pressão), assim como os
+dados brutos provenientes do sonar e do módulo PanTilt serão conformados em um
+computador embarcado e enviados via ethernet para um computador em superfície.
+
+Já na superfície o componente Sonar-PanTilt realizará a fusão dos dados
+referentes ao sonar e o módulo de reconstrução 3D irá gerar a imagem,
+analogamente as outras propostas. Por fim os componentes de Monitoração e
+Visualização enviarão os dados processados para o tablet. O componente de
+segurança também está implementado no computador em terra.
+
+A maior vantagem dessa arquitetura, na ótica de software, é a facilidade de
+manutenção, uma vez que para a realização de qualquer alteração do software do
+sistema não é necessário a abertura da envólucro do sistema embarcado. Já a sua
+desvantagem seria a maior quantidade de trabalho para a programação de dois
+sistemas.
