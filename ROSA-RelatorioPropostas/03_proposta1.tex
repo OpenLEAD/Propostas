@@ -1,98 +1,100 @@
-%%******************************************************************************
-%%
-%% introduction.tex
-%%
-%%******************************************************************************
-%%
-%% Title......: Introduction
-%%
-%% Author.....: GSCAR-DFKI
-%%
-%% Started....: Nov 2013
-%%
-%% Emails.....: alcantara@poli.ufrj.br elael@poli.ufrj renan028@gmail.com
-%%
-%% Address....: Universidade Federal do Rio de Janeiro
-%%              Caixa Postal 68.504, CEP: 21.945-970
-%%              Rio de Janeiro, RJ - Brasil.
-%%
-%%******************************************************************************
+% %******************************************************************************
+% % % introduction.tex %
+% %******************************************************************************
+% % % Title......: Introduction % % Author.....: GSCAR-DFKI % % Started....: Nov
+% 2013 % % Emails.....: alcantara@poli.ufrj.br elael@poli.ufrj
+% renan028@gmail.com % % Address....: Universidade Federal do Rio de Janeiro %  
+%            Caixa Postal 68.504, CEP: 21.945-970 %              Rio de Janeiro,
+% RJ - Brasil.
+% %
+% %******************************************************************************
 
 
-%%******************************************************************************
-%% SECTION - Eletronica
-%%******************************************************************************
+% %******************************************************************************
+% % SECTION - Eletronica
+% %******************************************************************************
 
-\section{Proposta 1 – Placa com Microcontrolador e Gateway Ethernet}
+\section[Proposta 1 – Placa com Microcontrolador e Gateway Ethernet]{Proposta 1
+– Placa com Microcontrolador e \\Gateway Ethernet}
 
 A eletrônia é composta pelos seguintes dispositivos:
 \begin{itemize}
   \item Dois Encoders da IFM: 24V e interface CAN. Datasheet em Anexo 1.
-  \item Um sonar Super SeaKing da Tritech: 24V e interface RS232. Datasheet em
+  \item Um sonar Super SeaKing da Tritech: 24V e interface RS232. Data\-sheet em
   Anexo 1
-  \item Um Sistema Pan \& Tilt da Kongsberg: 24V e interface RS485. Datasheet em
-  Anexo 1.
-  \item Dois sensores Indutivos da Pepperl-Fuchs: 24V e saída analógico.
-  Datasheet em Anexo 1.
+  \item Um Sistema Pan \& Tilt da Kongsberg: 24V e interface RS485. Data\-sheet
+  em Anexo 1.
+  \item Dois sensores Indutivos da Pepperl-Fuchs: 24V e saída ana\-lógico.
+  Data\-sheet em Anexo 1.
   \item Um sensor de inclinação da Pepperl-Fuchs: 24V e saída analógica.
-  Datasheet em Anexo 1.
+  Data\-sheet em Anexo 1.
   \item Um sensor de pressão da Velki: 24V e saída RS485. Datasheet em Anexo 1.
-\end{itemize}	
+\end{itemize}
 
 A placa com microcontrolador deve ter disponível todas as alimentações elétricas
 e interfaces de comunicação descritas acima, além de saída Ethernet para
 comunicação com a base. Na figura~\ref{placa}, pode ser observado o modelo 3D da
 placa. Na figura~\ref{alimentacao_placa} e figura~\ref{com_placa}, são
-representados os diagramas de interfaces de comunicação e alimentação elétrica, respectivamente, do sistema. A seguir, será feita uma breve explicação dos principais componentes da placa.
+representados os diagramas de interfaces de comunicação e alimentação elétrica,
+respectivamente, do sistema. A seguir, será feita uma breve explicação dos
+principais componentes da placa.
 
-O microcontrolador AT90CAN64 será responsável pelo monitoramento e controle da alimentação elétrica de todos os dispositivos, além de ser o responsável pela comunicação CAN com o Encoder. 
+O microcontrolador AT90CAN64 será responsável pelo monitoramento e controle da
+alimentação elétrica de todos os dispositivos, além de ser o respon\-sável pela
+comunicação CAN com o Encoder.
 
-O gateway Ethernet SR01E12 possui interfaces UART e analógicas. Dessa forma, diversos dispositivos podem se conectar ao gateway através de chips MAX232 ou MAX485, que realizam a conversão RS232 ou RS485 para UART, respectivamente.
-  
+O gateway Ethernet SR01E12 possui interfaces UART e analógicas. Des\-sa forma,
+diversos dispositivos podem se conectar ao gateway atra\-vés de chips MAX232 ou
+MAX485, que realizam a conversão RS232 ou RS485 para UART, respectivamente.
+
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\columnwidth]{figs/eletronica/1.png}
-    \caption{Placa 3D}
-    \label{placa}
+\centering
+\includegraphics[width=1\columnwidth]{figs/eletronica/1.png}
+\caption{Placa 3D}
+\label{placa}
 \end{figure}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\columnwidth]{figs/eletronica/2.png}
-    \caption{Diagrama de Alimentações}
-    \label{alimentacao_placa}
+\centering
+\includegraphics[width=1\columnwidth]{figs/eletronica/2.png}
+\caption{Diagrama de Alimentações}
+\label{alimentacao_placa}
 \end{figure}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\columnwidth]{figs/eletronica/3.png}
-    \caption{Diagrama de Comunicação}
-    \label{com_placa}
+\centering
+\includegraphics[width=1\columnwidth]{figs/eletronica/3.png}
+\caption{Diagrama de Comunicação}
+\label{com_placa}
 \end{figure}
- 
+
 A placa com microcontrolador é uma solução de baixo custo, porém exige maior
-tempo de execução. Há a necessidade de fabricação, montagem, testes elétricos e lógicos da placa e programação de microcontrolador para gerenciamento de cada interface, como o protocolo CANOpen.
-A eletrônica deverá ser acoplada ao Lifting Beam, logo deverá ser construída uma estrutura mecânica à prova d’água para esta solução.
+tempo de execução. Há a necessidade de fabricação, montagem, testes elétricos e
+lógicos da placa e programação de microcontrolador para gerenciamento de cada
+interface, como o protocolo CANOpen.
+A eletrônica deverá ser acoplada ao Lifting Beam, logo deverá ser construída uma
+estrutura mecânica à prova d’água para esta solução.
 
 \subsection{Arquitetura de Software Proposta 1}
 O sistema se divide em três grandes blocos que serão encapsulados separadamente
 e se comunicarão entre si, figura \ref{fig:FL:1}. A primeira parte consiste no
 sistema de eletrônica embarcada composta pelos sensores e um equipamento de
-roteamento dos dados (raias \emph{Sensores}, \emph{Conversores UART} e \emph{Interface de
-Telemetria} da figura), a segunda parte consiste no sistema de gerenciamento e
-processamento de dados em terra (raia \emph{Computação em Terra}) e, finalmente, o
-último bloco consiste na camada de interface homem-máquina , que consiste em um
-Tablet com sistema operacional Android (raia \emph{Interface com o usuário}).
+roteamento dos dados (raias \emph{Sensores}, \emph{Conversores UART} e
+\emph{Interface de Telemetria} da figura), a segunda parte consiste no sistema
+de gerenciamento e processamento de dados em terra (raia \emph{Computação em
+Terra}) e, finalmente, o último bloco consiste na camada de interface
+homem-máquina , que consiste em um Tablet com sistema operacional Android (raia
+\emph{Interface com o usuário}).
 
 \afterpage{
 \begin{landscape}
- \begin{figure}
-  \centering
-  \includegraphics[width=1\linewidth,keepaspectratio]{figs/software/LogicoFisico/EsqLogicoFisico1n.pdf}
-  \caption{Relação entre os componentes físicos e as divisões lógicas da
-  proposta 1.}
-  \label{fig:FL:1}
- \end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth,keepaspectratio]{figs/software/LogicoFisico/EsqLogicoFisico1n.pdf}
+\caption{Relação entre os componentes físicos e as divisões lógicas da
+proposta 1.}
+\label{fig:FL:1}
+\end{figure}
 \end{landscape}
 }
 
@@ -109,16 +111,24 @@ driver do módulo Ethernet.  Os dados transmitidos pela eletrônica embarcada s�
 separados em dois grandes grupos: referentes à Monitoração e os referentes à
 Visualização Sonar.
 
-No computador localizado em terra, o componente de software responsável pela
-monitoração irá processar e conformar os dados provenientes dos sensores
-utilizados para o monitoramento das operações de inserção e remoção (encoders,
-inclinômetro, sensores indutivos e sensor de pressão). Os dados provenientes do
-sonar devem ser integrados com a posição do elemento PanTilt, no componente
-Sonar-PanTilt, para que sejam consistentes e completos.  O módulo de
-Reconstrução 3D é responsável, então, por traduzir os dados processados pelo
-componente anterior em uma visualização inteligível para o ser humano.  Um
-componente de segurança também é adicionado para monitorar a correta utilização
-do sonar (apenas embaixo d’água), conferindo uma maior robustez ao sistema.
+No computador localizado em terra, figura \ref{fig:ES:1}, o componente de
+software responsável pela monitoração irá processar e conformar os dados
+provenientes dos sensores utilizados para o monitoramento das operações de
+inserção e remoção (encoders, inclinômetro, sensores indutivos e sensor de
+pressão). Os dados provenientes do sonar devem ser integrados com a posição do
+elemento PanTilt, no componente Sonar-PanTilt, para que sejam consistentes e
+completos.  O módulo de Reconstrução 3D é responsável, então, por traduzir os
+dados processados pelo componente anterior em uma visualização inteligível para
+o ser humano.  Um componente de segurança também é adicionado para monitorar a
+correta utilização do sonar (apenas embaixo d’água), conferindo uma maior
+robustez ao sistema.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figs/software/EstrutSoft/prop1_soft_2.pdf}
+\caption{Interconexões entre os componentes de software da proposta 1.}
+\label{fig:ES:1}
+\end{figure}
 
 Ambos os componentes de processamento e conformação de dados, Monitoração e
 Visualização Sonar, irão se comunicar com o Tablet com sistema operacional
@@ -127,10 +137,3 @@ processados e recebendo os comandos de controle.  A interface homem máquina
 consiste em um aplicativo cuja finalidade é realizar a interface do sistema com
 o usuário, possibilitando uma correta e fácil visualização de todas as
 informações pertinentes do sistema e suas operações.
-
-\subsection{Arquitetura de Software Proposta 1}
-O sistema se divide em três grandes blocos que serão encapsulados separadamente e se comunicarão entre si. A primeira parte consiste no sistema de eletrônica embarcada composta pelos sensores e um equipamento de roteamento dos dados, a segunda parte consiste no sistema de gerenciamento e processamento de dados em terra e, finalmente, o último bloco consiste na camada de interface homem-máquina , que consiste em um Tablet com sistema operacional Android.
-Cada sensor deverá possuir um driver para a interface entre o equipamento físico e camada de software, isto é, os encoders, inclinômetro, os sensores indutivos e o sensor de pressão possuirão drivers dedicados para a leitura de dados, feita através de uma conexão Ethernet para a placa que interconecta os sensores. O sonar e o módulo PanTilt também possuirão drivers próprios para a aquisição de dados e controle. 
-Nesta proposta, após a aquisição de dados, a placa embarcada realizará o roteamento e envio de todos os dados para o computador em terra por meio do driver do módulo Ethernet.  Os dados transmitidos pela eletrônica embarcada são separados em dois grandes grupos: referentes à Monitoração e os referentes à Visualização Sonar. 
-No computador localizado em terra, o componente de software responsável pela monitoração irá processar e conformar os dados provenientes dos sensores utilizados para o monitoramento das operações de inserção e remoção (encoders, inclinômetro, sensores indutivos e sensor de pressão). Os dados provenientes do sonar devem ser integrados com a posição do elemento PanTilt, no componente Sonar-PanTilt, para que sejam consistentes e completos.  O módulo de Reconstrução 3D é responsável, então, por traduzir os dados processados pelo componente anterior em uma visualização inteligível para o ser humano.  Um componente de segurança também é adicionado para monitorar a correta utilização do sonar (apenas embaixo d’água), conferindo uma maior robustez ao sistema. 
-Ambos os componentes de processamento e conformação de dados, Monitoração e Visualização Sonar, irão se comunicar com o Tablet com sistema operacional Android por meio do componente Transmissão de dados – Tablet, enviando os dados processados e recebendo os comandos de controle.  A interface homem máquina consiste em um aplicativo cuja finalidade é realizar a interface do sistema com o usuário, possibilitando uma correta e fácil visualização de todas as informações pertinentes do sistema e suas operações.
